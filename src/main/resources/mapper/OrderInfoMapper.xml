@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.order.extention.dao.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.order.extention.model.OrderInfo">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="MEMBER" jdbcType="BIGINT" property="member" />
+    <result column="EQUIP" jdbcType="BIGINT" property="equip" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="ORDER_STATUS" jdbcType="INTEGER" property="orderStatus" />
+    <result column="PAY_STATUS" jdbcType="INTEGER" property="payStatus" />
+    <result column="PAT_TYPE" jdbcType="INTEGER" property="patType" />
+    <result column="PAY_CODE" jdbcType="VARCHAR" property="payCode" />
+    <result column="POWER_BI" jdbcType="VARCHAR" property="powerBi" />
+    <result column="BW_SHOP" jdbcType="BIGINT" property="bwShop" />
+    <result column="BK_SHOP" jdbcType="BIGINT" property="bkShop" />
+    <result column="USE_MINUTE" jdbcType="INTEGER" property="useMinute" />
+    <result column="BILL" jdbcType="DOUBLE" property="bill" />
+    <result column="UNIT_PRICE" jdbcType="DOUBLE" property="unitPrice" />
+    <result column="ORDERTIME" jdbcType="TIMESTAMP" property="ordertime" />
+    <result column="BK_TIME" jdbcType="TIMESTAMP" property="bkTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MEMBER, EQUIP, CODE, ORDER_STATUS, PAY_STATUS, PAT_TYPE, PAY_CODE, POWER_BI, 
+    BW_SHOP, BK_SHOP, USE_MINUTE, BILL, UNIT_PRICE, ORDERTIME, BK_TIME
+  </sql>
+  <select id="selectOrderInfoByOrderStatus" parameterType="java.lang.Integer" resultType="com.order.extention.model.OrderInfo" >
+      SELECT
+          *
+      FROM
+          orderinfo
+      WHERE
+          ORDER_STATUS = #{orderStatus}
+          order BY ORDERTIME desc
+  </select>
+
+  <select id="selectOrderInfoByOrderStatus2" parameterType="java.lang.Integer" resultType="java.util.Map" >
+      SELECT
+          id,code
+      FROM
+          orderinfo
+      WHERE
+          ORDER_STATUS = #{orderStatus}
+          order BY ORDERTIME desc
+  </select>
+
+</mapper>

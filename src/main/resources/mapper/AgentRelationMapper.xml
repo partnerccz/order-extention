@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.order.extention.dao.AgentRelationMapper">
+  <resultMap id="BaseResultMap" type="com.order.extention.model.AgentRelation">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="ROLE" jdbcType="BIGINT" property="role" />
+    <result column="OPERATOR" jdbcType="BIGINT" property="operator" />
+    <result column="AREA" jdbcType="BIGINT" property="area" />
+    <result column="PLAT" jdbcType="BIGINT" property="plat" />
+    <result column="OPENID" jdbcType="VARCHAR" property="openid" />
+    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+    <result column="A_NAME" jdbcType="VARCHAR" property="aName" />
+    <result column="A_PASSWORD" jdbcType="VARCHAR" property="aPassword" />
+    <result column="AGENT_RELATION" jdbcType="BIGINT" property="agentRelation" />
+    <result column="ISBLOCK" jdbcType="INTEGER" property="isblock" />
+    <result column="CONTACT_NAME" jdbcType="VARCHAR" property="contactName" />
+    <result column="CONTACT_PHONE" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="LOGIN_NUMS" jdbcType="INTEGER" property="loginNums" />
+    <result column="M_GROUP" jdbcType="INTEGER" property="mGroup" />
+    <result column="MANAGER" jdbcType="BIGINT" property="manager" />
+    <result column="REGISTTIME" jdbcType="TIMESTAMP" property="registtime" />
+    <result column="LAST_LOGIN" jdbcType="TIMESTAMP" property="lastLogin" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ROLE, OPERATOR, AREA, PLAT, OPENID, ACCOUNT, A_NAME, A_PASSWORD, AGENT_RELATION, 
+    ISBLOCK, CONTACT_NAME, CONTACT_PHONE, LOGIN_NUMS, M_GROUP, MANAGER, REGISTTIME, LAST_LOGIN
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from agent_relation
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getAgentRelationByPage" resultType="com.order.extention.model.AgentRelation">
+    SELECT
+    <include refid="Base_Column_List" />
+      FROM agent_relation
+    order by ID desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from agent_relation
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.order.extention.model.AgentRelation">
+    insert into agent_relation (ID, ROLE, OPERATOR, 
+      AREA, PLAT, OPENID, ACCOUNT, 
+      A_NAME, A_PASSWORD, AGENT_RELATION, 
+      ISBLOCK, CONTACT_NAME, CONTACT_PHONE, 
+      LOGIN_NUMS, M_GROUP, MANAGER, 
+      REGISTTIME, LAST_LOGIN)
+    values (#{id,jdbcType=BIGINT}, #{role,jdbcType=BIGINT}, #{operator,jdbcType=BIGINT}, 
+      #{area,jdbcType=BIGINT}, #{plat,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{aName,jdbcType=VARCHAR}, #{aPassword,jdbcType=VARCHAR}, #{agentRelation,jdbcType=BIGINT}, 
+      #{isblock,jdbcType=INTEGER}, #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{loginNums,jdbcType=INTEGER}, #{mGroup,jdbcType=INTEGER}, #{manager,jdbcType=BIGINT}, 
+      #{registtime,jdbcType=TIMESTAMP}, #{lastLogin,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.order.extention.model.AgentRelation">
+    insert into agent_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="role != null">
+        ROLE,
+      </if>
+      <if test="operator != null">
+        OPERATOR,
+      </if>
+      <if test="area != null">
+        AREA,
+      </if>
+      <if test="plat != null">
+        PLAT,
+      </if>
+      <if test="openid != null">
+        OPENID,
+      </if>
+      <if test="account != null">
+        ACCOUNT,
+      </if>
+      <if test="aName != null">
+        A_NAME,
+      </if>
+      <if test="aPassword != null">
+        A_PASSWORD,
+      </if>
+      <if test="agentRelation != null">
+        AGENT_RELATION,
+      </if>
+      <if test="isblock != null">
+        ISBLOCK,
+      </if>
+      <if test="contactName != null">
+        CONTACT_NAME,
+      </if>
+      <if test="contactPhone != null">
+        CONTACT_PHONE,
+      </if>
+      <if test="loginNums != null">
+        LOGIN_NUMS,
+      </if>
+      <if test="mGroup != null">
+        M_GROUP,
+      </if>
+      <if test="manager != null">
+        MANAGER,
+      </if>
+      <if test="registtime != null">
+        REGISTTIME,
+      </if>
+      <if test="lastLogin != null">
+        LAST_LOGIN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=BIGINT},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=BIGINT},
+      </if>
+      <if test="plat != null">
+        #{plat,jdbcType=BIGINT},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="aName != null">
+        #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aPassword != null">
+        #{aPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="agentRelation != null">
+        #{agentRelation,jdbcType=BIGINT},
+      </if>
+      <if test="isblock != null">
+        #{isblock,jdbcType=INTEGER},
+      </if>
+      <if test="contactName != null">
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginNums != null">
+        #{loginNums,jdbcType=INTEGER},
+      </if>
+      <if test="mGroup != null">
+        #{mGroup,jdbcType=INTEGER},
+      </if>
+      <if test="manager != null">
+        #{manager,jdbcType=BIGINT},
+      </if>
+      <if test="registtime != null">
+        #{registtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLogin != null">
+        #{lastLogin,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.order.extention.model.AgentRelation">
+    update agent_relation
+    <set>
+      <if test="role != null">
+        ROLE = #{role,jdbcType=BIGINT},
+      </if>
+      <if test="operator != null">
+        OPERATOR = #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="area != null">
+        AREA = #{area,jdbcType=BIGINT},
+      </if>
+      <if test="plat != null">
+        PLAT = #{plat,jdbcType=BIGINT},
+      </if>
+      <if test="openid != null">
+        OPENID = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="aName != null">
+        A_NAME = #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aPassword != null">
+        A_PASSWORD = #{aPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="agentRelation != null">
+        AGENT_RELATION = #{agentRelation,jdbcType=BIGINT},
+      </if>
+      <if test="isblock != null">
+        ISBLOCK = #{isblock,jdbcType=INTEGER},
+      </if>
+      <if test="contactName != null">
+        CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginNums != null">
+        LOGIN_NUMS = #{loginNums,jdbcType=INTEGER},
+      </if>
+      <if test="mGroup != null">
+        M_GROUP = #{mGroup,jdbcType=INTEGER},
+      </if>
+      <if test="manager != null">
+        MANAGER = #{manager,jdbcType=BIGINT},
+      </if>
+      <if test="registtime != null">
+        REGISTTIME = #{registtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLogin != null">
+        LAST_LOGIN = #{lastLogin,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.order.extention.model.AgentRelation">
+    update agent_relation
+    set ROLE = #{role,jdbcType=BIGINT},
+      OPERATOR = #{operator,jdbcType=BIGINT},
+      AREA = #{area,jdbcType=BIGINT},
+      PLAT = #{plat,jdbcType=BIGINT},
+      OPENID = #{openid,jdbcType=VARCHAR},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      A_NAME = #{aName,jdbcType=VARCHAR},
+      A_PASSWORD = #{aPassword,jdbcType=VARCHAR},
+      AGENT_RELATION = #{agentRelation,jdbcType=BIGINT},
+      ISBLOCK = #{isblock,jdbcType=INTEGER},
+      CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      LOGIN_NUMS = #{loginNums,jdbcType=INTEGER},
+      M_GROUP = #{mGroup,jdbcType=INTEGER},
+      MANAGER = #{manager,jdbcType=BIGINT},
+      REGISTTIME = #{registtime,jdbcType=TIMESTAMP},
+      LAST_LOGIN = #{lastLogin,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
